@@ -4,7 +4,7 @@ pipeline {
         stage('Clone'){
             steps{
                 git branch:'main',
-                    'https://github.com/maodo-malick/orderring.git'
+                   url: 'https://github.com/maodo-malick/orderring.git'
             }
         }
         stage('Build, Test, and Package') {
