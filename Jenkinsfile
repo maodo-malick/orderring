@@ -1,28 +1,11 @@
 pipeline {
     agent any
-
-    tools {
-        // Install the Maven version configured as "M3" and add it to the path.
-           maven "M3"
-    }
-
     stages {
-        stage('compile') {
+        stage('Build, Test, and Package') {
             steps {
-                // To run Maven on a Windows agent, use
-                 bat  'mvn clean compile'
+                // The 'clean package' goal runs the entire lifecycle up to 'package',
+                // which includes 'compile' and 'test' (running unit tests)
+                bat 'mvn clean package'
             }
         }
-           stage('Test'){
-               steps{
-                      bat 'mvn test'
-               }
-           }
-           stage('Package'){
-               steps{
-                   bat 'mvn package'
-               }
-           }
-          
-    }
 }
