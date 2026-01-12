@@ -2,7 +2,7 @@ pipeline {
     agent any
     stages {
         stage('Clone'){
-            step{
+            steps{
                 git branch:'main',
                     'https://github.com/maodo-malick/orderring.git'
             }
