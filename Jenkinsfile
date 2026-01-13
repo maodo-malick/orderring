@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    tools {
+        maven 'Maven-3.9.1'  // Must match the name you configured
+    }
     stages {
         stage('Clone'){
             steps{
