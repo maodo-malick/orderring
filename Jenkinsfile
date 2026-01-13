@@ -7,9 +7,19 @@ pipeline {
                    url: 'https://github.com/maodo-malick/orderring.git'
             }
         }
-        stage('Build, Test, and Package') {
+        stage('Compile') {
             steps {
-                bat 'mvn clean package'
+                bat 'mvn compile'
+            }
+        }
+        stage('Test') {
+            steps{
+                bat 'mvn test'
+            }
+        }
+        stage('Package'){
+            steps{
+                bat 'mvn package'
             }
         }
   }
