@@ -20,13 +20,18 @@ pipeline {
                 sh 'mvn test'
             }
         }
-         stage('SonarQube Analysis') {
+        stage('SonarQube Analysis') {
                     steps {
                         withSonarQubeEnv('SonarQube') {
-                            sh 'mvn sonar:sonar'
+                            sh '''
+                                mvn sonar:sonar \
+                                -Dsonar.projectKey=orderring \
+                                -Dsonar.projectName=Orderring \
+                                -Dsonar.java.source=17
+                            '''
                         }
                     }
-         }
+                }
          stage('Quality Gate') {
                      steps {
                          timeout(time: 5, unit: 'MINUTES') {
