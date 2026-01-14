@@ -21,17 +21,17 @@ pipeline {
             }
         }
         stage('SonarQube Analysis') {
-                    steps {
-                        withSonarQubeEnv('SonarQube') {
-                            sh '''
-                                mvn sonar:sonar \
-                                -Dsonar.projectKey=orderring \
-                                -Dsonar.projectName=Orderring \
-                                -Dsonar.java.source=17
-                            '''
-                        }
-                    }
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    sh '''
+                        mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.11.0.3922:sonar \
+                        -Dsonar.projectKey=orderring \
+                        -Dsonar.projectName=Orderring \
+                        -Dsonar.java.source=17
+                    '''
                 }
+            }
+        }
          stage('Quality Gate') {
                      steps {
                          timeout(time: 5, unit: 'MINUTES') {
