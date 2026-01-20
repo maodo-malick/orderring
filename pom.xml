@@ -12,6 +12,18 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
     </properties>
+    <distributionManagement>
+        <repository>
+            <id>nexus-releases</id>
+            <name>starting_with_nexus_maven</name>
+            <url>http://localhost:8081/repository/starting_with_nexus_maven/</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>Nexus Snapshot Repository</name>
+            <url>http://localhost:8081/repository/starting_with_nexus_maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
