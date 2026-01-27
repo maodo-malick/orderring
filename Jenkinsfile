@@ -47,7 +47,11 @@ pipeline {
         }
         stage('Deploy'){
         steps{
-           sh 'mvn deploy'
+         withCredentials([usernamePassword(credentialsId: 'nexus-credentials',
+                                                   usernameVariable: 'NEXUS_USER',
+                                                   passwordVariable: 'NEXUS_PASS')]) {
+                     configFileProvider([configFile(fileId: 'maven-settings', variable: 'MAVEN_SETTINGS')]) {
+                         sh 'mvn deploy -s $MAVEN_SETTINGS'
         }
         }
   }
